@@ -1,0 +1,8 @@
+## Interface: 56311
+## Title: Designated Bag Spaces
+## Notes: Allows assigning specific bag slots for items
+## Author: MrNill
+## Version: 0.25
+
+## SavedVariablesPerCharacter: DesignatedBagSpacesCharDB
+DesignatedBagSpaces.lua
