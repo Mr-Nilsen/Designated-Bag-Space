@@ -154,21 +154,20 @@ SlashCmdList["DBS"] = function(msg)
     end
 end
 
--- Hook into bag updates to auto-organize
-local function HookSorter()
-    local frame = CreateFrame("Frame")
-    frame:RegisterEvent("BAG_UPDATE_DELAYED")
-    frame:SetScript("OnEvent", OrganizeBags)
-end
+local function EventHandler(self, event, ...)
 
--- Initialization
-local function InitializeAddon()
-    HookSorter()
-    LoadDesignations()
-    print("DBS: Designated Bag Spaces loaded.")
+	if event == "PLAYER_LOGIN" then
+		LoadDesignations()
+	end
+	
+	if event == "BAG_UPDATE_DELAYED" then
+		OrganizeBags()
+	end
+
 end
 
 -- Initialize on player login
 local initFrame = CreateFrame("Frame")
 initFrame:RegisterEvent("PLAYER_LOGIN")
-initFrame:SetScript("OnEvent", InitializeAddon)
+initFrame:RegisterEvent("BAG_UPDATE_DELAYED")
+initFrame:SetScript("OnEvent", EventHandler)
